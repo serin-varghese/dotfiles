@@ -1,0 +1,10 @@
+[core]
+	editor = code --wait
+	excludesfile = ~/.dotfiles/git/.gitignore_global
+[user]
+	name = Serin Varghese
+	email = serin.varghese@cariad.technology
+[init]
+	defaultBranch = main
+[includeIf "gitdir/i:/Users/"]
+	path = ~/.dotfiles/git/.gitconfig_mac
