@@ -1,0 +1,55 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "autoDocstring.docstringFormat": "numpy-notypes",
+    "black-formatter.args": [
+        "--line-length=120"
+    ],
+    "cSpell.enableFiletypes": [
+        "markdown"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "dotfiles.repository": "https://git.hub.vwgroup.com/amzljbn/dotfiles.git",
+    "dotfiles.targetPath": "~/.dotfiles",
+    "editor.fontFamily": "FiraCode Nerd Font Mono",
+    "editor.fontLigatures": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.unicodeHighlight.allowedCharacters": {
+        "×": true
+    },
+    "extensions.ignoreRecommendations": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "never",
+    "git.suggestSmartCommit": false,
+    "gitlens.plusFeatures.enabled": false,
+    "gitlens.showWelcomeOnInstall": false,
+    "gitlens.showWhatsNewAfterUpgrades": false,
+    "gitlens.telemetry.enabled": false,
+    "gitlens.views.commitDetails.files.layout": "tree",
+    "jupyter.experiments.enabled": false,
+    "plantuml.render": "Local",
+    "python.experiments.enabled": false,
+    "python.linting.enabled": false,
+    "python.linting.lintOnSave": false,
+    "ruff.args": [
+        "--line-length=120",
+        "--select=ANN,B,C4,E,F,I,ISC,N,PIE,PLC,PLE,PLR,PLW,PT,Q,RET,RUF,S,SIM,UP,W",
+        "--ignore=ANN101,ANN102,ANN401,B905,D100,D107,D107,D203,D212,D213,D402,D413,D415,D416,D417",
+        "--per-file-ignores=test_*.py:S101"
+    ],
+    "ruff.importStrategy": "useBundled",
+    "telemetry.telemetryLevel": "off",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+    "terminal.integrated.scrollback": 10000,
+    "workbench.enableExperiments": false,
+    "workbench.startupEditor": "none"
+}
