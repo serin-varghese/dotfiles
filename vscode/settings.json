@@ -10,7 +10,7 @@
         "markdown"
     ],
     "diffEditor.ignoreTrimWhitespace": false,
-    "dotfiles.repository": "https://git.hub.vwgroup.com/amzljbn/dotfiles.git",
+    "dotfiles.repository": "https://github.com/serin-varghese/dotfiles.git",
     "dotfiles.targetPath": "~/.dotfiles",
     "editor.fontFamily": "FiraCode Nerd Font Mono",
     "editor.fontLigatures": true,
