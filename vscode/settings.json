@@ -40,10 +40,10 @@
     "python.experiments.enabled": false,
     "python.linting.enabled": false,
     "python.linting.lintOnSave": false,
-    "ruff.args": [
+    "ruff.lint.args": [
         "--line-length=120",
         "--select=ANN,B,C4,E,F,I,ISC,N,PIE,PLC,PLE,PLR,PLW,PT,Q,RET,RUF,S,SIM,UP,W",
-        "--ignore=ANN101,ANN102,ANN401,B905,D100,D107,D107,D203,D212,D213,D402,D413,D415,D416,D417",
+        "--ignore=ANN101,ANN102,ANN401,B905,D100,D107,D203,D212,D213,D402,D413,D415,D416,D417",
         "--per-file-ignores=test_*.py:S101"
     ],
     "ruff.importStrategy": "useBundled",

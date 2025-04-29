@@ -32,7 +32,7 @@ setopt incappendhistory  # Immediately append to the history file, not just when
 if [[ $OSTYPE == darwin* ]]; then
     export http_proxy=http://127.0.0.1:9000
     export https_proxy=http://127.0.0.1:9000
-    export no_proxy="localhost,127.0.0.1,wob.vw.vwg,vwgroup.com"
+    export no_proxy="localhost,127.0.0.1,wob.vw.vwg,github.com,vwgroup.com"
 
     export HDF5_DIR=/opt/homebrew/opt/hdf5
 fi
