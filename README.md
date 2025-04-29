@@ -57,7 +57,9 @@ dotfiles/
 
 To make updates to dotfiles seamless across machines:
 
-ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+   ```bash
+   ln -s ~/dotfiles/zsh/.zshrc ~/.zshrc
+   ```
 
 This keeps your home directory synced with changes made in the repo.
 
