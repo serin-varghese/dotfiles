@@ -28,7 +28,8 @@ setopt appendhistory     # Append history to the history file (no overwriting)
 setopt sharehistory      # Share history across terminals
 setopt incappendhistory  # Immediately append to the history file, not just when a term is killed
 
-# Only for Mac
+# Only for Mac in VW. Might want to disable for personal use.
+# `unset http_proxy` `unset https_proxy` in bash disables this.
 if [[ $OSTYPE == darwin* ]]; then
     export http_proxy=http://127.0.0.1:9000
     export https_proxy=http://127.0.0.1:9000
