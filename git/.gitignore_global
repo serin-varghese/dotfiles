@@ -6,3 +6,9 @@
 
 # Visual Studio Code
 .vscode
+
+# Ruff cache
+.ruff_cache/
+
+# Pytorch
+*.pth
