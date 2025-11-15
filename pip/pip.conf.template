@@ -1,0 +1,61 @@
+# =============================================================================
+# Pip Configuration Template
+# =============================================================================
+# Copy this file to one of the following locations:
+#
+# [Priority 1] Site level (virtual environment specific)
+#   - <venv>/pip.conf
+#
+# [Priority 2] User level (recommended)
+#   - ~/.config/pip/pip.conf (XDG standard)
+#   - ~/.pip/pip.conf (legacy)
+#
+# [Priority 3] Global level (system-wide)
+#   - /Library/Application Support/pip/pip.conf (macOS)
+#   - /etc/pip.conf (Linux)
+#
+# Replace placeholders with your actual credentials:
+#   <JFROG_USERNAME> - Your JFrog/Artifactory username
+#   <JFROG_TOKEN>    - Your JFrog/Artifactory API token
+
+[global]
+# Disable caching (useful for development/corporate environments)
+no-cache-dir = true
+
+# Primary package index (PyPI or corporate mirror)
+index-url = https://<JFROG_USERNAME>:<JFROG_TOKEN>@jfrog.devstack.vwgroup.com/artifactory/api/pypi/pypi/simple
+
+# Additional package indexes (checked if package not found in index-url)
+extra-index-url =
+    https://<JFROG_USERNAME>:<JFROG_TOKEN>@jfrog.devstack.vwgroup.com/artifactory/api/pypi/gmdm-pypi/simple
+    https://<JFROG_USERNAME>:<JFROG_TOKEN>@jfrog.devstack.vwgroup.com/artifactory/api/pypi/gmdm-sda-python-release/simple
+    https://<JFROG_USERNAME>:<JFROG_TOKEN>@jfrog.devstack.vwgroup.com/artifactory/api/pypi/adapmt-python-release/simple
+    https://<JFROG_USERNAME>:<JFROG_TOKEN>@jfrog.devstack.vwgroup.com/artifactory/api/pypi/gmdm-sda-python-snapshot/simple
+    https://pypi.ngc.nvidia.com
+
+# Trusted hosts (bypasses SSL verification - use with caution)
+trusted-host =
+    jfrog.devstack.vwgroup.com
+    pypi.ngc.nvidia.com
+
+[list]
+# Format for pip list output
+format = columns
+
+# =============================================================================
+# Optional Configuration (uncomment as needed)
+# =============================================================================
+
+# [install]
+# # Set default installation timeout (useful with slow networks/proxies)
+# timeout = 60
+#
+# # Use specific Python version's site-packages
+# user = false
+#
+# # Require virtual environment (prevents accidental global installs)
+# require-virtualenv = true
+
+# [freeze]
+# # Timeout for pip freeze
+# timeout = 15

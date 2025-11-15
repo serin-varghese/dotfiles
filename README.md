@@ -74,7 +74,22 @@ ln -sf ~/Projects/02_Personal/dotfiles/git/.gitignore_global ~/.gitignore_global
 ln -sf ~/Projects/02_Personal/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ```
 
-#### 6. Configure secrets
+#### 6. Configure pip (Python package manager)
+
+```bash
+# Create pip config directory
+mkdir -p ~/.config/pip
+
+# Copy pip template and edit with your credentials
+cp ~/Projects/02_Personal/dotfiles/pip/pip.conf.template ~/.config/pip/pip.conf
+vim ~/.config/pip/pip.conf
+
+# Replace placeholders:
+# <JFROG_USERNAME> - Your JFrog/Artifactory username
+# <JFROG_TOKEN>    - Your JFrog/Artifactory API token
+```
+
+#### 7. Configure secrets
 
 Edit `~/.zshrc_local` to add your:
 - Proxy credentials (if needed)
@@ -96,6 +111,8 @@ Edit `~/.zshrc_local` to add your:
 ├── zsh/                      # Zsh configuration
 │   ├── .zshrc               # Main Zsh config
 │   └── .zshrc_local.template # Template for local secrets
+├── pip/                      # Python pip configuration
+│   └── pip.conf.template    # Template for pip settings
 ├── ubuntu/                   # Ubuntu-specific configs
 │   └── .inputrc
 ├── .gitignore                # Excludes secrets from git
@@ -157,8 +174,10 @@ alert # Play sound when command finishes
 **Important:** Never commit secrets to this repository!
 
 - `.zshrc_local` is gitignored (contains secrets)
-- Use `.zshrc_local.template` as a reference
-- Sensitive data should only exist in your local `~/.zshrc_local`
+- `pip/pip.conf` is gitignored (contains JFrog credentials)
+- Use `.zshrc_local.template` and `pip/pip.conf.template` as references
+- Sensitive data should only exist in your local config files
+- Always replace `<PLACEHOLDERS>` with actual values locally
 
 ---
 
