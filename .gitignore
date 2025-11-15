@@ -1,0 +1,16 @@
+# Secrets and local configurations
+zsh/.zshrc_local
+
+# OS-specific files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Editor directories
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.backup

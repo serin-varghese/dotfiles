@@ -1,0 +1,88 @@
+# =============================================================================
+# .zshrc_local Template
+# =============================================================================
+# Copy this file to ~/.zshrc_local and fill in your actual values
+# This file is gitignored to keep your secrets safe
+
+# =============================================================================
+# PATH Configuration
+# =============================================================================
+export PATH=~/.local/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/Applications/Docker.app/Contents/Resources/bin:$PATH
+
+# =============================================================================
+# Proxy Configuration (Optional - only if you're behind a corporate proxy)
+# =============================================================================
+# export HTTP_PROXY_USER=YOUR_USERNAME
+# export HTTP_PROXY_PASSWORD=YOUR_PASSWORD
+# export HTTP_PROXY=http://YOUR_USERNAME:YOUR_PASSWORD@PROXY_HOST:PROXY_PORT/
+# export HTTPS_PROXY=http://YOUR_USERNAME:YOUR_PASSWORD@PROXY_HOST:PROXY_PORT/
+
+# Local proxy (e.g., for VPN or local proxy tools like Clash)
+# export http_proxy=http://127.0.0.1:9000
+# export https_proxy=http://127.0.0.1:9000
+
+# =============================================================================
+# Environment-specific configurations
+# =============================================================================
+export HDF5_DIR=/opt/homebrew/opt/hdf5
+
+# Proxy exceptions (domains that should bypass proxy)
+# export no_proxy="localhost,127.0.0.1,your-internal-domains.com"
+
+# Docker/Container settings
+export BUILDKIT_PROGRESS=plain
+
+# For Podman (uncomment if using Podman instead of Docker)
+# export DOCKER_HOST='unix:///Users/YOUR_USERNAME/.local/share/containers/podman/machine/podman-machine-default/podman.sock'
+
+# =============================================================================
+# Zsh Plugins
+# =============================================================================
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# =============================================================================
+# Key Bindings
+# =============================================================================
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+# =============================================================================
+# Prompt
+# =============================================================================
+eval "$(starship init zsh)"
+
+# =============================================================================
+# Docker Desktop initialization (added automatically by Docker Desktop)
+# =============================================================================
+source /Users/$USER/.docker/init-zsh.sh || true
+
+# =============================================================================
+# Additional PATH Configuration
+# =============================================================================
+export PATH=$HOME/.docker/bin:$PATH
+
+# Paths for qt5 installation (for apps like TikZit)
+export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib:$LDFLAGS"
+export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include:$CPPFLAGS"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+# =============================================================================
+# Aliases
+# =============================================================================
+alias ll="ls -ltr"
+alias cc="cd .."
+alias alert='afplay /System/Library/Sounds/Ping.aiff'
+
+# =============================================================================
+# Project-specific aliases or commands
+# =============================================================================
+# Example: Azure Bastion tunnel
+# alias bastion="az network bastion tunnel --name BASTION_NAME --resource-group RG_NAME --target-resource-id /subscriptions/SUBSCRIPTION_ID/resourceGroups/RG_NAME/providers/Microsoft.Compute/virtualMachines/VM_NAME --resource-port 22 --port 50022"
