@@ -8,8 +8,8 @@ Personal configuration files and setup automation for macOS.
 
 ```bash
 # 1. Clone this repository
-git clone https://github.com/serin-varghese/dotfiles.git ~/Projects/02_Personal/dotfiles
-cd ~/Projects/02_Personal/dotfiles
+git clone https://github.com/serin-varghese/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 
 # 2. Run the setup script
 ./setup.sh
@@ -62,16 +62,16 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax
 
 ```bash
 # Zsh
-ln -sf ~/Projects/02_Personal/dotfiles/zsh/.zshrc ~/.zshrc
-cp ~/Projects/02_Personal/dotfiles/zsh/.zshrc_local.template ~/.zshrc_local
+	ln -sf ~/dotfiles/zsh/.zshrc ~/.zshrc
+	cp ~/dotfiles/zsh/.zshrc_local.template ~/.zshrc_local
 
 # Git
-ln -sf ~/Projects/02_Personal/dotfiles/git/.gitconfig ~/.gitconfig
-ln -sf ~/Projects/02_Personal/dotfiles/git/.gitconfig_mac ~/.gitconfig_mac
-ln -sf ~/Projects/02_Personal/dotfiles/git/.gitignore_global ~/.gitignore_global
+	ln -sf ~/dotfiles/git/.gitconfig ~/.gitconfig
+	ln -sf ~/dotfiles/git/.gitconfig_mac ~/.gitconfig_mac
+	ln -sf ~/dotfiles/git/.gitignore_global ~/.gitignore_global
 
 # VSCode
-ln -sf ~/Projects/02_Personal/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+	ln -sf ~/dotfiles/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 ```
 
 #### 6. Configure pip (Python package manager)
@@ -81,7 +81,7 @@ ln -sf ~/Projects/02_Personal/dotfiles/vscode/settings.json ~/Library/Applicatio
 mkdir -p ~/.config/pip
 
 # Copy pip template and edit with your credentials
-cp ~/Projects/02_Personal/dotfiles/pip/pip.conf.template ~/.config/pip/pip.conf
+	cp ~/dotfiles/pip/pip.conf.template ~/.config/pip/pip.conf
 vim ~/.config/pip/pip.conf
 
 # Replace placeholders:
@@ -185,13 +185,13 @@ alert # Play sound when command finishes
 
 ### Update Brewfile from current system
 ```bash
-cd ~/Projects/02_Personal/dotfiles
+cd ~/dotfiles
 brew bundle dump --force
 ```
 
 ### Pull latest dotfiles
 ```bash
-cd ~/Projects/02_Personal/dotfiles
+cd ~/dotfiles
 git pull
 ```
 
