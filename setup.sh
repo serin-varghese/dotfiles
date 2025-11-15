@@ -85,8 +85,46 @@ fi
 print_header "Installing Homebrew packages"
 if [ -f "$DOTFILES_DIR/Brewfile" ]; then
     cd "$DOTFILES_DIR"
-    brew bundle
-    print_success "Homebrew packages installed"
+    echo "Updating Homebrew..."
+    brew update || true
+
+    # Allow skipping specific casks that require interactive setup (e.g. Docker)
+    # Usage: SKIP_CASKS="docker iterm2" ./setup.sh
+    BREWFILE_TO_USE="$DOTFILES_DIR/Brewfile"
+    TMP_BREWFILE=""
+    if [ -n "$SKIP_CASKS" ]; then
+        echo "Skipping casks: $SKIP_CASKS"
+        TMP_BREWFILE="$(mktemp)"
+        cp "$DOTFILES_DIR/Brewfile" "$TMP_BREWFILE"
+        for c in $SKIP_CASKS; do
+            # remove lines like: cask "name"
+            # create a backup for macOS sed compatibility
+            sed -i.bak "/cask \"${c}\"/d" "$TMP_BREWFILE" || true
+        done
+        BREWFILE_TO_USE="$TMP_BREWFILE"
+    fi
+
+    # Run brew bundle and capture output for clearer diagnostics
+    TMP_OUT="$(mktemp)"
+    if brew bundle --file="$BREWFILE_TO_USE" --verbose >"$TMP_OUT" 2>&1; then
+        print_success "Homebrew packages installed"
+    else
+        print_error "\`brew bundle\` failed. See a short excerpt below:"
+        sed -n '1,200p' "$TMP_OUT" || true
+        echo ""
+        print_warning "Common causes: packages requiring additional taps, casks that need user interaction (e.g. Docker), or permission prompts."
+        print_warning "To retry manually run: brew bundle --file=\"$BREWFILE_TO_USE\" --verbose"
+        rm -f "$TMP_OUT"
+        if [ -n "$TMP_BREWFILE" ]; then
+            rm -f "$TMP_BREWFILE" "$TMP_BREWFILE.bak" || true
+        fi
+        exit 1
+    fi
+
+    rm -f "$TMP_OUT"
+    if [ -n "$TMP_BREWFILE" ]; then
+        rm -f "$TMP_BREWFILE" "$TMP_BREWFILE.bak" || true
+    fi
 else
     print_warning "Brewfile not found, skipping package installation"
 fi

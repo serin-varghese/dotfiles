@@ -3,9 +3,10 @@
 # Generate from current system: brew bundle dump
 
 # Taps
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+# Note: Explicitly tapping `homebrew/bundle`, `homebrew/cask`, and
+# `homebrew/core` is no longer required and can cause errors. Homebrew
+# provides bundle and cask functionality from core now. If you run into
+# a package that requires an additional tap, add it individually.
 
 # =============================================================================
 # CLI Tools

@@ -19,6 +19,27 @@ vim ~/.zshrc_local
 
 # 4. Restart your shell
 exec zsh
+
+### Homebrew / Brewfile notes
+
+- The `Brewfile` no longer includes explicit taps for `homebrew/bundle`, `homebrew/cask`, or `homebrew/core` — modern Homebrew provides bundle and cask functionality from core. This prevents tap-related errors you may see on newer Homebrew installations.
+- The `setup.sh` script runs `brew bundle --file="$DOTFILES_DIR/Brewfile" --verbose` and captures output for easier diagnostics. If `brew bundle` fails, the script prints a helpful excerpt and exits with instructions.
+- Some casks require user interaction or post-install setup (for example, Docker often needs you to open Docker.app and grant permissions). To skip such casks during an automated run, set `SKIP_CASKS` when running the script. Example:
+
+```zsh
+# Skip Docker during an automated run to avoid interactive prompts
+SKIP_CASKS="docker" ./setup.sh
+```
+
+- To debug failures manually, run:
+
+```zsh
+cd ~/dotfiles
+brew update
+brew bundle --file="$PWD/Brewfile" --verbose
+```
+
+	Inspect the verbose output for missing taps, permission prompts, or license acceptance steps and share it if you want help fixing a specific failing item.
 ```
 
 ### Manual Setup
