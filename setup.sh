@@ -174,6 +174,23 @@ else
 fi
 
 # =============================================================================
+# Setup Pip configuration
+# =============================================================================
+print_header "Setting up Pip configuration"
+mkdir -p ~/.config/pip
+
+if [ -f "$DOTFILES_DIR/pip/pip.conf.template" ]; then
+    if [ ! -f ~/.config/pip/pip.conf ]; then
+        cp "$DOTFILES_DIR/pip/pip.conf.template" ~/.config/pip/pip.conf
+        print_warning "Created pip.conf from template - please edit with your credentials"
+    else
+        print_success "pip.conf already exists"
+    fi
+else
+    print_warning "pip.conf.template not found, skipping pip setup"
+fi
+
+# =============================================================================
 # Set Zsh as default shell
 # =============================================================================
 print_header "Setting Zsh as default shell"
