@@ -1,4 +1,8 @@
-# � Dotfiles
+# 🏠 Dotfiles for Data Science
+
+Personal configuration files and setup automation for macOS, optimized for **data science workflows** with Databricks, Azure, and Python development.
+
+## 🚀 Quick Startotfiles
 
 Personal configuration files and setup automation for macOS.
 
@@ -123,22 +127,31 @@ Edit `~/.zshrc_local` to add your:
 
 ```
 .
-├── git/                      # Git configuration
-│   ├── .gitconfig           # Main Git config
-│   ├── .gitconfig_mac       # Mac-specific Git config
-│   └── .gitignore_global    # Global gitignore
-├── vscode/                   # VSCode settings
-│   └── settings.json
-├── zsh/                      # Zsh configuration
-│   ├── .zshrc               # Main Zsh config
-│   └── .zshrc_local.template # Template for local secrets
-├── pip/                      # Python pip configuration
-│   └── pip.conf.template    # Template for pip settings
-├── ubuntu/                   # Ubuntu-specific configs
+├── git/                         # Git configuration
+│   ├── .gitconfig              # Main Git config
+│   ├── .gitconfig_mac          # Mac-specific Git config
+│   └── .gitignore_global       # Global gitignore
+├── vscode/                      # VSCode settings
+│   ├── settings.json           # Editor settings
+│   └── extensions.json         # Recommended extensions
+├── zsh/                         # Zsh configuration
+│   ├── .zshrc                  # Main Zsh config
+│   └── .zshrc_local.template   # Template for local secrets
+├── pip/                         # Python pip configuration
+│   └── pip.conf.template       # Template for pip settings (JFrog, proxies)
+├── databricks/                  # Databricks configuration
+│   └── .databrickscfg.template # Databricks CLI profiles
+├── templates/                   # Project templates
+│   ├── .env.template           # Environment variables (Azure, Databricks)
+│   └── pyproject.toml          # Python project configuration
+├── ubuntu/                      # Ubuntu-specific configs
 │   └── .inputrc
-├── .gitignore                # Excludes secrets from git
-├── Brewfile                  # Homebrew packages
-├── setup.sh                  # Automated setup script
+├── .gitignore                   # Excludes secrets from git
+├── .gitattributes               # Git attributes for data science files
+├── .editorconfig                # Cross-editor coding style
+├── .pre-commit-config.yaml      # Pre-commit hooks for code quality
+├── Brewfile                     # Homebrew packages for data science
+├── setup.sh                     # Automated setup script
 └── README.md
 ```
 

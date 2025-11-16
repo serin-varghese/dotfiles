@@ -1,0 +1,80 @@
+# =============================================================================
+# Databricks CLI Configuration Template
+# =============================================================================
+# Copy this file to ~/.databrickscfg and fill in your credentials
+# This file is gitignored to protect your access tokens
+#
+# Documentation: https://docs.databricks.com/dev-tools/cli/index.html
+
+# =============================================================================
+# DEFAULT Profile (used when no profile is specified)
+# =============================================================================
+[DEFAULT]
+# Databricks workspace URL (Azure Databricks format)
+host = https://<workspace-name>.azuredatabricks.net
+
+# Authentication method 1: Personal Access Token (PAT)
+token = <your-personal-access-token>
+
+# Authentication method 2: Azure AD (uncomment to use)
+# auth_type = azure-cli
+
+# =============================================================================
+# Development Environment
+# =============================================================================
+[dev]
+host = https://<dev-workspace>.azuredatabricks.net
+token = <dev-pat-token>
+
+# Optional: Specify cluster ID for databricks-connect
+# cluster_id = <cluster-id>
+
+# =============================================================================
+# Staging Environment
+# =============================================================================
+[staging]
+host = https://<staging-workspace>.azuredatabricks.net
+token = <staging-pat-token>
+
+# =============================================================================
+# Production Environment
+# =============================================================================
+[prod]
+host = https://<prod-workspace>.azuredatabricks.net
+token = <prod-pat-token>
+
+# =============================================================================
+# Azure AD Authentication Example (no token needed)
+# =============================================================================
+[azure-ad]
+host = https://<workspace-name>.azuredatabricks.net
+auth_type = azure-cli
+# Uses your Azure CLI login: az login
+
+# =============================================================================
+# Service Principal Authentication Example
+# =============================================================================
+[sp-auth]
+host = https://<workspace-name>.azuredatabricks.net
+auth_type = azure-client-secret
+azure_tenant_id = <tenant-id>
+azure_client_id = <service-principal-client-id>
+azure_client_secret = <service-principal-secret>
+
+# =============================================================================
+# Usage Examples
+# =============================================================================
+# Use default profile:
+#   databricks workspace list
+#
+# Use specific profile:
+#   databricks workspace list --profile dev
+#   databricks fs ls dbfs:/ --profile prod
+#
+# Set default profile via environment variable:
+#   export DATABRICKS_CONFIG_PROFILE=dev
+#
+# Generate new token:
+#   1. Go to: https://<workspace>.azuredatabricks.net/#setting/account
+#   2. Click "User Settings" → "Access Tokens" → "Generate New Token"
+#   3. Copy token and paste above
