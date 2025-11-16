@@ -1,0 +1,190 @@
+# =============================================================================
+# Pre-commit Configuration for Data Science Projects
+# =============================================================================
+# Install: pip install pre-commit
+# Setup: pre-commit install
+# Run manually: pre-commit run --all-files
+# Update hooks: pre-commit autoupdate
+
+repos:
+  # =============================================================================
+  # General File Checks
+  # =============================================================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '\.md$'  # Allow trailing whitespace in markdown
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-added-large-files
+        args: ['--maxkb=10000']  # 10MB max
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+      - id: check-docstring-first
+      - id: debug-statements
+
+  # =============================================================================
+  # Python Code Formatting with Ruff
+  # =============================================================================
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.9
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: ['--fix']
+        types_or: [python, pyi, jupyter]
+      # Run the formatter
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]
+
+  # =============================================================================
+  # Jupyter Notebook Cleanup
+  # =============================================================================
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
+        # Strips output from notebooks before committing
+        # Install: pip install nbstripout
+
+  # Alternative: Use nbqa to run tools on notebooks
+  # - repo: https://github.com/nbQA-dev/nbQA
+  #   rev: 1.7.1
+  #   hooks:
+  #     - id: nbqa-ruff
+  #       args: ['--fix']
+
+  # =============================================================================
+  # Security Checks
+  # =============================================================================
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: package.lock.json
+
+  # Check for common security issues
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        args: ['-c', 'pyproject.toml']
+        additional_dependencies: ['bandit[toml]']
+        exclude: '^tests/'
+
+  # =============================================================================
+  # Type Checking (Optional - can be slow)
+  # =============================================================================
+  # - repo: https://github.com/pre-commit/mirrors-mypy
+  #   rev: v1.7.1
+  #   hooks:
+  #     - id: mypy
+  #       additional_dependencies: [types-all]
+  #       args: ['--ignore-missing-imports']
+
+  # =============================================================================
+  # Markdown & Documentation
+  # =============================================================================
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix']
+
+  # =============================================================================
+  # YAML Formatting
+  # =============================================================================
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.11.0
+    hooks:
+      - id: pretty-format-yaml
+        args: ['--autofix', '--indent', '2']
+
+  # =============================================================================
+  # Docker
+  # =============================================================================
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+        # Dockerfile linter
+
+  # =============================================================================
+  # SQL Formatting (Optional)
+  # =============================================================================
+  # - repo: https://github.com/sqlfluff/sqlfluff
+  #   rev: 2.3.5
+  #   hooks:
+  #     - id: sqlfluff-lint
+  #     - id: sqlfluff-fix
+
+  # =============================================================================
+  # Check for Common Issues
+  # =============================================================================
+  - repo: local
+    hooks:
+      # Prevent committing to main/master directly
+      - id: prevent-main-commit
+        name: Prevent commits to main
+        entry: bash -c 'if [ "$(git rev-parse --abbrev-ref HEAD)" = "main" ] || [ "$(git rev-parse --abbrev-ref HEAD)" = "master" ]; then echo "Direct commits to main/master are not allowed"; exit 1; fi'
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      # Check for TODO/FIXME comments (warning only)
+      - id: check-todos
+        name: Check for TODO/FIXME
+        entry: bash -c 'grep -rn "TODO\|FIXME" --include="*.py" . || true'
+        language: system
+        pass_filenames: false
+        always_run: true
+        verbose: true
+
+# =============================================================================
+# Configuration
+# =============================================================================
+default_language_version:
+  python: python3.11
+
+# Fail fast - stop on first failure
+fail_fast: false
+
+# Files to exclude from all hooks
+exclude: |
+  (?x)^(
+      \.git/|
+      \.venv/|
+      venv/|
+      \.mypy_cache/|
+      \.pytest_cache/|
+      \.ruff_cache/|
+      __pycache__/|
+      build/|
+      dist/|
+      \.eggs/|
+      data/|
+      models/|
+      checkpoints/
+  )
+
+# =============================================================================
+# CI Configuration (for GitHub Actions, Azure DevOps, etc.)
+# =============================================================================
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

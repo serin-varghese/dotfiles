@@ -4,18 +4,106 @@ Git settings optimized for data science workflows.
 
 ## 📁 Files
 
-- `.gitconfig` - Main Git configuration
-- `.gitconfig_mac` - macOS-specific Git settings
-- `.gitignore_global` - Global gitignore patterns
+### `.gitconfig`
+**Main Git configuration file** - Contains your global Git settings, aliases, and preferences.
+
+What it controls:
+- User identity (name, email)
+- Default branch names
+- Custom aliases for common commands
+- Merge and diff tools
+- Color settings
+- Push/pull behavior
+
+Location after install: `~/.gitconfig`
+
+### `.gitconfig_mac`
+**macOS-specific Git settings** - Platform-specific configurations for macOS.
+
+What it controls:
+- macOS Keychain integration for credentials
+- macOS-specific file system settings
+- Platform-specific diff/merge tools (e.g., Xcode FileMerge)
+- Path configurations for macOS
+
+Location after install: `~/.gitconfig_mac` (included by `.gitconfig`)
+
+### `.gitignore_global`
+**Global ignore patterns** - Files and patterns to ignore across ALL your Git repositories.
+
+What it controls:
+- OS-specific files (`.DS_Store`, `Thumbs.db`)
+- Editor/IDE files (`.vscode/`, `.idea/`)
+- Python artifacts (`__pycache__/`, `*.pyc`)
+- Data science files (datasets, models, notebooks checkpoints)
+- Secrets and credentials
+
+Location after install: `~/.gitignore_global`
+
+**Note:** This is different from project-specific `.gitignore` files. Global patterns apply to every Git repo on your machine.
 
 ## 🚀 Setup
 
-### Symlink Configurations
+### Quick Install (Recommended)
+
+Run the automated setup script from the dotfiles root:
 
 ```bash
+cd ~/Projects/02_Personal/dotfiles
+./setup.sh
+```
+
+This will automatically create symlinks for all Git configurations.
+
+### Manual Install
+
+If you prefer to install manually or selectively:
+
+#### Step 1: Symlink Configurations
+
+```bash
+# Main Git config
 ln -sf ~/Projects/02_Personal/dotfiles/git/.gitconfig ~/.gitconfig
+
+# macOS-specific config
 ln -sf ~/Projects/02_Personal/dotfiles/git/.gitconfig_mac ~/.gitconfig_mac
+
+# Global gitignore
 ln -sf ~/Projects/02_Personal/dotfiles/git/.gitignore_global ~/.gitignore_global
+```
+
+**What symlinks do:**
+- Create a link from your home directory to the dotfiles repo
+- Changes in the repo automatically apply to your system
+- Easy to update by pulling latest changes from Git
+
+#### Step 2: Configure Your Identity
+
+**Important:** Set your personal information (not included in dotfiles for privacy):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@company.com"
+```
+
+#### Step 3: Verify Installation
+
+```bash
+# Check that configs are loaded
+git config --list --show-origin
+
+# Test an alias
+git st  # Should run 'git status'
+```
+
+### Updating Configurations
+
+Since files are symlinked, updates are automatic:
+
+```bash
+cd ~/Projects/02_Personal/dotfiles
+git pull
+# Your Git config is now updated!
 ```
 
 ## ⚙️ .gitconfig

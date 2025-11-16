@@ -184,10 +184,10 @@ cask "1password"       # Password manager
 # cask "rstudio"       # R IDE
 # cask "dbeaver-community" # Universal database tool
 
-# Communication (optional)
-# cask "slack"
-# cask "microsoft-teams"
-# cask "zoom"
+# Communication
+cask "slack"
+# cask "microsoft-teams"  # Uncomment if needed
+# cask "zoom"             # Uncomment if needed
 
 # Browsers (optional)
 # cask "google-chrome"
